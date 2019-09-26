@@ -17,6 +17,7 @@ function init() {
     var words = new Word("automobile","run","large","purple","3","star wars","albuqquerque");
     console.log(words);
     
+    // The stories
     // story array
      story[0] = new Array ("A Shepherd " + words.noun + " tended his master's Sheep near a dark " +  words.noun + "not far from the village. Soon he " + words.verb + "life in the pasture very dull. All he could do to " + words.movie + " himself was to talk to his dog or play on his shepherd's pipe&#13;&#10;." +
      "One " + words.noun + " as he sat " + words.verb + "ing the Sheep and the quiet " + words.city + ", and thinking what he would do should he see a " + words.noun + ", he thought of a plan to " + words.verb + " himself.&#13;&#10;" +
@@ -108,28 +109,19 @@ function isEmpty(value, type) {
 function writeSResults(words) {
     console.log("in writeResults:");
     
-    /*//esting that the reandom was working
-    for (var j=0; j<=10; j++) {
-        // randomly select the next story
-        var i = Math.floor(Math.random() * 3);      // returns a random integer from 0 to 2
-    }*/
-    for (var i = 0; i < story.length; i++) {
-        if(story[i].checked)
-   	        alert("story#" + i + "selected");
-            var selectedStory = story[i].value;
-    }
-    /*// get user selection
-    if (!document.querySelector('input[name="story"]:checked').value == null)
-    var selection = document.querySelector('input[name="story"]:checked').value
-    */
-    // randomly select the next story
-    var i = Math.floor(Math.random() * 3);      // returns a random integer from 0 to 2
-    
-     
+    var i = 0;
+    // select the story to be printed
+    if(document.getElementById('story1').checked){
+            var i = 0;
+        }else if (document.getElementById('story2').checked) {
+            var i = 1;
+        }else if (document.getElementById('story3').checked){
+            var i = 2;
+        }
+      
     // write to textarea
     document.getElementById("madlib").innerHTML=story[i];
     
-    //document.getElementById("madlib").innerHTML="Blah Blah&#13;&#10;Blah Blah";
     
 // tooggle form visibility
     document.getElementById("inputForm").style.display="none"; 

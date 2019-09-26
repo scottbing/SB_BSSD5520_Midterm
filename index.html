@@ -65,6 +65,16 @@
         <input type="text" name="movie" size="50" required/><br />
         <label for="city">Enter a city:</label><br />
         <input type="text" name="city" size="50" required/><br />
+        <h3>Select a story to view:</h3>
+        <label class="radio-inline">
+            <input type="radio" name="story" id="story1" checked>Get Story 1
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="story" id="story2">Get Story 2
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="story" id="story3">Get Story 3
+        </label><br /><br />  
         <button class="size" type="submit" id="submit">Get a Mad Lib</button>
         <button class="size" type="reset" id="submit" value="Submit">Clear</button>
     </fieldset>
@@ -74,11 +84,7 @@
           <img src="images\title.png" alt="Title Image" height="175" width="375" class="center">
         <label for="madlib">The Mad Lib</label><br />
         <textarea name="madlib" id="madlib" readonly></textarea><br />
-        <button class="size" type="submit" id="submit" value="Submit">Make a New Madlib</button>
-        <p>Please select a story to view:</p>
-        <input type="radio" name="story" value="story1" onclick="getResults();"> Story 1<br>
-        <input type="radio" name="story" value="story2" onclick="getResults();"> Story 2<br>
-        <input type="radio" name="story" value="story3" onclick="getResults();"> Story 3<br>  
+        <button class="size" type="submit" id="submit" value="Submit" onclick="history.go(-1);">Make a New Madlib</button>
     </fieldset>
   </form>
 </body>
