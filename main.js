@@ -1,93 +1,103 @@
 document.addEventListener("DOMContentLoaded", init);
 
 
-
 function init() {
-    console.log("in main.js:init()");
+    console.log("in main.js");
     
-    // toggle forms
-    document.getElementById("inputForm").style.display="block"; 
-    document.getElementById("story").style.display="none"; 
-    
-    // register submit function
+    resultDiv = document.getElementById("result");
+
     var submitButton = document.getElementById("submit");
     submitButton.addEventListener("click", formSubmitted);
     
-    // test the instantiation of the object
-    var words = new Word("automobile","run","large","purple","3","star wars","albuqquerque");
-    console.log(words);
-    
-    // The stories
-    // story array
-     story[0] = new Array ("A Shepherd " + words.noun + " tended his master's Sheep near a dark " +  words.noun + "not far from the village. Soon he " + words.verb + "life in the pasture very dull. All he could do to " + words.movie + " himself was to talk to his dog or play on his shepherd's pipe&#13;&#10;." +
-     "One " + words.noun + " as he sat " + words.verb + "ing the Sheep and the quiet " + words.city + ", and thinking what he would do should he see a " + words.noun + ", he thought of a plan to " + words.verb + " himself.&#13;&#10;" +
-     "His " + words.movie + " had told him to " + words.verb + " for help should a Wolf attack the " + words.color + ", and the Villagers would " + words.verb + " it away. So now, though he had not seen " + words.city + " that even looked like a Wolf, he ran toward the village shouting at the top of his voice, Wolf! Wolf!&#13;&#10;" +
-     "As he expected, the " + words.noun + " who heard the " + words.number + " dropped their work and ran in great " + words.adjective + " to the pasture. But when they got there they found the Boy doubled up with laughter at the " + words.noun + " he had " + words.verb + "ed on them.&#13;&#10;" +
-     "A " + words.adjective + " " + words.noun + "s later the Shepherd Boy again " + words.verb + "ed, Wolf! Wolf! Again the Villagers ran to " + words.verb + " him, only to be laughed at again.");
-    
-     story[1] = new Array ("A " + words.noun + " was making fun of the " + words.city + " one day for being so slow.&#13;&#10;" +
-     "Do you ever get " + words.color + "? he asked with a mocking " + words.noun + ".&#13;&#10;" +
-     "Yes, replied the " + words.city + ", and I get there sooner than you think. I'll " + words.verb + " you a race and prove it.&#13;&#10;" +
-     "The Hare was much " + words.adjective + " at the idea of running a race with the " + words.color + ", but for the fun of the thing he agreed. So the " + words.movie + ", who had consented to act as " + words.noun + ", marked the distance and " + words.verb + "ed the runners off.&#13;&#10;" +
-     "The " + words.movie + " was soon far out of " + words.city + ", and to make the " + words.color + " feel very deeply how " + words.adjective + " it was for him to " + words.verb + " a race with a Hare, he lay down beside the " + words.noun + " to take a " + words.movie + "until the " + words.city + " should catch up.&#13;&#10;" +
-     "The " + words.color + " meanwhile kept " + words.verb +"ing slowly but steadily, and, after a " + words.noun + ", passed the place where the " + words.city + " was sleeping. But the " + words.city + " slept on very peacefully; and when at last he did " + words.verb + " up, the Tortoise was near the goal. The " + words.color + " now ran his swiftest, but he could not " + words.verb + " the " + words.movie + " in time.");
-    
-     story[2] = new Array ("I " + words.verb + " not, could not in a " + words.noun + ".&#13;&#10;" +
-     "Not in a " + words.movie + "! You " + words.verb + " me be.&#13;&#10;" +
-     "I do not " + words.verb + " " + words.color + " in a box.&#13;&#10;" +
-     "I do not like " + words.city + " with a " + words.color + ".&#13;&#10;" +
-     "I " + words.verb + " not like them in a " + words.number + "&#13;&#10;" +
-     "I do not " + words.verb + " them with a mouse.&#13;&#10;" +
-     + words.city + " do not like them " + words.noun + " or " + words.movie + ".&#13;&#10;" +
-     "I do not like them " + words.color + ". I do not like " + words.adjective + " eggs and " + words.noun + ".&#13;&#10;" +
-     "I would not " + words.verb + " them " + words.movie + " or " + words.city + ".&#13;&#10;" +
-     "I would not eat them " + words.adjective + ".&#13;&#10;" +
-     + words.noun + " would not eat " + words.color + " eggs and ham.");
-    
-    console.log("story:"+ story);
-
+    var newPet = new Pet("Maggie","04/12/1995","KalKan",{});
+    console.log(newPet);    
 }
+
 
 // form submitted function
 function formSubmitted(e) {
-    console.log("in main.js:formSubmitted()");
-    
     e.preventDefault();
     
+    Pet.prototype = {
+        constructor: Pet,
+        sayHello: function(){
+            return "make noise"
+        }
+    }
+    
+    // prototype overrides
+    Dog.prototype.sayHello = function(){
+        return "Bark, Bark, Bark";
+    }
+    
+    Cat.prototype.sayHello = function(){
+        return "Meow, Meow, Meow";
+    }
+    
+    Cow.prototype.sayHello = function(){
+        alert("Moo, Moo, Moo")
+    }
+    
+    var dog = new Dog("Sophie");
+    var cat = new Cat("Max");
+    var cow = new Cow("Henrietta")
+    
+    console.log(dog.sayHello());
+    console.log(cat.sayHello());
+    console.log(cow.sayHello());
+    
+    // put sayHello() to an alert box
+    var i = 0;
+    // select the animal to be printed
+    if(document.getElementById('animal1').checked){
+            var i = 0;
+            alert(dog.sayHello());
+        }else if (document.getElementById('animal2').checked) {
+            var i = 1;
+            alert(cat.sayHello());
+        }else if (document.getElementById('animal3').checked){
+            var i = 2;
+            alert(cow.sayHello());
+        }
+    
     // get user-entered values
-    var noun = document.forms["inputForm"]["noun"].value;
-    var verb = document.forms["inputForm"]["verb"].value;
-    var adjective = document.forms["inputForm"]["adjective"].value;
-    var color = document.forms["inputForm"]["color"].value;
-    var number = document.forms["inputForm"]["number"].value;
-    var movie = document.forms["inputForm"]["movie"].value;
-    var city = document.forms["inputForm"]["city"].value;
+    var name = document.forms["contact"]["name"].value;
+    var birthday = document.forms["contact"]["birthday"].value;
+    var food = document.forms["contact"]["food"].value;
+    var activities = document.forms["contact"]["activities"].value;
+    
+    // validate name
+    isEmpty(name, "Enter Pet's Name.");
+    
+    // validate birthday
+    isEmpty(birthday, "Enter Pet's Birthday - mm-dd-yyyy.");
+    // check the date format
+    var isValid = isValidDate(birthday);
+    console.log(isValid);
+    if (!isValid) {
+        alert("Please enter a date in this format: 'mm/dd//yy'.")
+        exit();
+    }
+    
+    // validate food
+    isEmpty(food, "Enter Pet's Favorite Food");
+    
+    // validate activities
+    isEmpty(activities, "Enter Pet's Activities - activity1,activity2,activity3,...");
+    var isCommaSepValid = isValidCommaSep(activities);
+    console.log(isCommaSepValid );
+    if (!isValid) {
+        alert("Please enter pet's activities in this format: activity1,activity2,activity3,...")
+    }
+    
+    console.log("form submitted",name,birthday,food,activities);
     
     // create Pet object from form input
-    var words = new Word(noun,verb,adjective,color,number,movie,city);
-    console.log("formSubmitted: " + words);
+    var newPet = new Pet(name,birthday,food,activities);
+    console.log("formSubmitted: " + newPet.name);
     
-    isEmpty(noun, "Enter a noun.");
-    
-    // validate verb
-    isEmpty(verb, "Enter a verb.");
-    
-    // validate adjective
-    isEmpty(adjective, "Enter an adjective");
-    
-    // validate color
-    isEmpty(color, "Enter a color");
-    
-    // validate number
-    isEmpty(number, "Enter a number");
-    
-    // validate movie
-    isEmpty(movie, "Enter a movie");
-    
-    // validate city
-    isEmpty(city, "Enter a city");
-    
-    writeSResults(words);
+    // write resulting object to the screen
+    writeSResults(newPet);
 }
 
 // validation helper function
@@ -95,36 +105,38 @@ function formSubmitted(e) {
 function isEmpty(value, type) {
     if (value == "") {
         alert("Please  enter  "+type);
-        //exit(1);
-        if (window.stop) {
-	        window.stop();
-	    }
-	    
-	    throw '';
+        exit();
     } 
 }
 
+//check if date is valid
+function isValidDate(value) {
+    // var pattern  =  "/^\\d{2}-\\d{2}-\\d{4}$/";
+    var pattern = /^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/;
+    return  pattern.test(value);
+}
 
+//check if activities is comma spearated
+function isValidCommaSep(value) {
+    // var pattern  =  "/^\\d{2}-\\d{2}-\\d{4}$/";
+    var pattern = /^(?:[a-zA-Z0-9 ]+,)*[a-zA-Z0-9 ]+$/;
+    return  pattern.test(value);
+}
 
-function writeSResults(words) {
-    console.log("in writeResults:");
+function isPatternMatch(input) {
+    console.log( input.value.match(input.pattern));
+}
+
+function writeSResults(newPet){
+    console.log("writeSResults: " + newPet.name);
     
-    var i = 0;
-    // select the story to be printed
-    if(document.getElementById('story1').checked){
-            var i = 0;
-        }else if (document.getElementById('story2').checked) {
-            var i = 1;
-        }else if (document.getElementById('story3').checked){
-            var i = 2;
-        }
-      
-    // write to textarea
-    document.getElementById("madlib").innerHTML=story[i];
-    
-    
-// tooggle form visibility
-    document.getElementById("inputForm").style.display="none"; 
-    document.getElementById("story").style.display="block"; 
+    var results = "";
+    results += "    New Pet Object<br>";
+    results += "    Name:  " + newPet.name;
+    results += "    Birthday:  " + newPet.birthday;
+    results += "    Favorite Food:  " + newPet.food;
+    results += "    Activities:  " + newPet.activities;
+
+resultDiv.innerHTML = results;
     
 }
